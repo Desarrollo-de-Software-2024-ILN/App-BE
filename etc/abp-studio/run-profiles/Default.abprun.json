@@ -1,0 +1,10 @@
+﻿{
+  "applications": {
+    "MySeries.HttpApi.Host": {
+      "type": "dotnet-project",
+      "launchUrl": "https://localhost:44321",
+      "path": "../../../src/MySeries.HttpApi.Host/MySeries.HttpApi.Host.csproj",
+      "kubernetesService": ".*-httpapihost$"  
+    }
+  }
+}
