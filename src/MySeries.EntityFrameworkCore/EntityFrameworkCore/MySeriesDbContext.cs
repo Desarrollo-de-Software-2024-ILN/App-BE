@@ -75,6 +75,7 @@ public class MySeriesDbContext :
                 MySeriesConsts.DbSchema);
             b.ConfigureByConvention();
             b.Property(x => x.Title).IsRequired().HasMaxLength(128);
+            b.Property(x => x.Descripcion).IsRequired().HasMaxLength(512);
         });
 
         builder.ConfigurePermissionManagement();
