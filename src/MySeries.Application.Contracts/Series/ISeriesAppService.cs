@@ -10,6 +10,7 @@ namespace MySeries.Series
 {
     public interface ISeriesAppService : ICrudAppService<SerieDto, int, PagedAndSortedResultRequestDto, CreateUpdateSerieDto>
     {
+        Task<SerieDto> SearchAsync(string title, string gender);
     }
 
 }
