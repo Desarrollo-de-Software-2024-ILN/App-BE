@@ -14,6 +14,7 @@ using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
+using MySeries.Series;
 
 namespace MySeries.EntityFrameworkCore;
 
@@ -26,7 +27,7 @@ public class MySeriesDbContext :
     IIdentityDbContext
 {
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
-
+    public DbSet<Serie> Series { get; set; } 
 
     #region Entities from the modules
 
@@ -68,6 +69,14 @@ public class MySeriesDbContext :
         base.OnModelCreating(builder);
 
         /* Include modules to your migration db context */
+        builder.Entity<Serie>(b =>
+        {
+            b.ToTable(MySeriesConsts.DbTablePrefix + "series",
+                MySeriesConsts.DbSchema);
+            b.ConfigureByConvention();
+            b.Property(x => x.Title).IsRequired().HasMaxLength(128);
+            b.Property(x => x.Descripcion).IsRequired().HasMaxLength(512);
+        });
 
         builder.ConfigurePermissionManagement();
         builder.ConfigureSettingManagement();
