@@ -9,9 +9,9 @@ using Volo.Abp.Domain.Repositories;
 
 namespace MySeries.Series
 {
-    public class SerieAppService : CrudAppService<Serie, SerieDto, int, PagedAndSortedResultRequestDto, CreateUpdateSerieDto>, ISeriesAppService
+    public class SerieAppService : CrudAppService<WatchList, SerieDto, int, PagedAndSortedResultRequestDto, CreateUpdateSerieDto>, ISeriesAppService
     {
-        public SerieAppService(IRepository<Serie, int> repository) : base(repository)
+        public SerieAppService(IRepository<WatchList, int> repository) : base(repository)
         {
         }
     }
