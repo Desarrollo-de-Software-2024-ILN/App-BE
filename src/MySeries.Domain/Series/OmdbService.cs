@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace MySeries.Series
 {
-    public class OmdbService : ISeriesService
+    public class OmdbService : ISeriesApiService
     {
-        public Task<SerieDto> GetSeriesAsync(string title, string gender)
+        public async Task<SerieDto[]> GetSeriesAsync(string title, string gender)
         {
-            return Task.FromResult(new SerieDto
+            SerieDto[] series = new SerieDto[]
             {
-                Title = "Game oh Thrones",
-            });
+                new SerieDto { Title = "Breaking Bad"}
+
+            };
+            return await Task.FromResult(series);
         }
     }   
 }
