@@ -30,7 +30,8 @@ public class MySeriesDbContext :
     IIdentityDbContext
 {
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
-    public DbSet<Serie> Series { get; set; } 
+    public DbSet<Series.WatchList> Series { get; set; } 
+    public DbSet<Watchlist> Watchlists { get; set; }
 
     private readonly CurrentUser _currentUser;
 
@@ -79,13 +80,20 @@ public class MySeriesDbContext :
         
         
         /* Include modules to your migration db context */
-        builder.Entity<Serie>(b =>
+        builder.Entity<Series.WatchList>(b =>
         {
             b.ToTable(MySeriesConsts.DbTablePrefix + "series",
                 MySeriesConsts.DbSchema);
             b.ConfigureByConvention();
             b.Property(x => x.Title).IsRequired().HasMaxLength(128);
             b.Property(x => x.Descripcion).IsRequired().HasMaxLength(512);
+        });
+
+        builder.Entity<Watchlist>(b => 
+        {
+            b.ToTable(MySeriesConsts.DbTablePrefix + "Watchlist",
+                MySeriesConsts.DbSchema);
+            b.ConfigureByConvention();
         });
 
         builder.ConfigurePermissionManagement();
