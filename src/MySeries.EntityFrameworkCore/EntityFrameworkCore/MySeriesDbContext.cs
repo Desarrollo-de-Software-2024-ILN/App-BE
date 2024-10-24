@@ -16,6 +16,8 @@ using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using MySeries.Series;
 using MySeries.WatchList;
+using Volo.Abp.Users;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace MySeries.EntityFrameworkCore;
 
@@ -30,6 +32,8 @@ public class MySeriesDbContext :
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
     public DbSet<Series.WatchList> Series { get; set; } 
     public DbSet<Watchlist> Watchlists { get; set; }
+
+    private readonly CurrentUser _currentUser;
 
     #region Entities from the modules
 
@@ -63,13 +67,18 @@ public class MySeriesDbContext :
     public MySeriesDbContext(DbContextOptions<MySeriesDbContext> options)
         : base(options)
     {
-
+        _currentUser = this.GetService<CurrentUser>();
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
 
+
+        /////Configuracion de filtro global
+        builder.Entity<Serie>().HasQueryFilter(serie => serie.CreatorId == _currentUser.GetCurrentUserId());
+        
+        
         /* Include modules to your migration db context */
         builder.Entity<Series.WatchList>(b =>
         {

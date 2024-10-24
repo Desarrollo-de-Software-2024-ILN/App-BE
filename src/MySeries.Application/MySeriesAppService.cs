@@ -12,3 +12,5 @@ public abstract class MySeriesAppService : ApplicationService
         LocalizationResource = typeof(MySeriesResource);
     }
 }
+
+
