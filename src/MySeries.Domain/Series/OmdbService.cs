@@ -12,7 +12,7 @@ namespace MySeries.Series
         {
             SerieDto[] series = new SerieDto[]
             {
-                new SerieDto { Title = "Breaking Bad"}
+                new SerieDto { Title = title}
 
             };
             return await Task.FromResult(series);
