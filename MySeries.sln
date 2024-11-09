@@ -34,6 +34,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySeries.DbMigrator", "src\MySeries.DbMigrator\MySeries.DbMigrator.csproj", "{70680696-BB1E-4383-BCB2-42C3767171FB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySeries.HttpApi.Host", "src\MySeries.HttpApi.Host\MySeries.HttpApi.Host.csproj", "{96E5259E-59A3-4FAF-BCD1-5BF8E74EF82C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{520659C8-C734-4298-A3DA-B539DB9DFC0B} = {520659C8-C734-4298-A3DA-B539DB9DFC0B}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

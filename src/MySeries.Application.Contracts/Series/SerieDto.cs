@@ -10,7 +10,6 @@ namespace MySeries.Series
     public class SerieDto : EntityDto<int>
     {
         public string Title { get; set; }
-        public string Descripcion { get; set; }
 
     }
 }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace MySeries.Series
 {
-    public class CreateUpdateSerieDto
-    { 
-        public string Title { get; set; }
+    public interface ISeriesApiService
+    {
+        Task<ICollection<SerieDto>> GetSeriesAsync(string title, string gender);
     }
 }
