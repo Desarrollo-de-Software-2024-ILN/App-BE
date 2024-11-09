@@ -8,7 +8,7 @@ using Volo.Abp.Domain.Entities;
 
 namespace MySeries.Series
 {
-    public class Serie : AggregateRoot<int>
+    public class Serie : AggregateRoot<int>, IMustHaveCreator<Guid>
     {
         public string Title { get; set; }
 

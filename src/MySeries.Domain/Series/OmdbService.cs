@@ -37,7 +37,7 @@ namespace MySeries.Series
                 var seriesOmdb = searchResponse?.Search ?? new List<SerieOmdb>();
 
                 foreach (var serieOmdb in seriesOmdb)
-                {
+        {
                     series.Add(new SerieDto { Title = serieOmdb.Title });
                 }
 
@@ -62,5 +62,5 @@ namespace MySeries.Series
             public string Actors { get; set; }
             public string Plot { get; set; }
         }
-    }
+    }   
 }
