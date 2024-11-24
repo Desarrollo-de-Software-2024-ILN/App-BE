@@ -11,6 +11,8 @@ namespace MySeries.Series
     public interface ISeriesAppService : ICrudAppService<SerieDto, int, PagedAndSortedResultRequestDto, CreateUpdateSerieDto, CreateUpdateSerieDto>
     {
         Task<ICollection<SerieDto>> SearchAsync(string? title, string? gender);
+
+        Task CalificarSerieAsync(CalificacionDto input);
     }
 
 }

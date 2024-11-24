@@ -11,5 +11,8 @@ namespace MySeries.Series
     {
         public string Title { get; set; }
 
+        // Manejo de Calificaciones
+        public ICollection<CalificacionDto> Calificaciones { get; set; }
+
     }
 }

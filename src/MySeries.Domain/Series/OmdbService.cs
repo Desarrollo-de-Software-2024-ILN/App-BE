@@ -1,15 +1,14 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Json;
-using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Volo.Abp.DependencyInjection;
 
 namespace MySeries.Series
 {
-    public class OmdbService : ISeriesApiService
+    public class OmdbService : ISeriesApiService, ITransientDependency
     {
         private static readonly string apiKey = "844b1b8b"; // Reemplaza con tu clave API de OMDb.
         private static readonly string baseUrl = "http://www.omdbapi.com/";
