@@ -80,6 +80,7 @@ public class MySeriesHttpApiHostModule : AbpModule
             PreConfigure<OpenIddictServerBuilder>(serverBuilder =>
             {
                 serverBuilder.AddProductionEncryptionAndSigningCertificate("openiddict.pfx", "6f9e1fea-0bb9-44f3-bb77-4f10c178d746");
+                serverBuilder.AddDevelopmentSigningCertificate();
                 serverBuilder.SetIssuer(new Uri(configuration["AuthServer:Authority"]!));
             });
         }
@@ -184,7 +185,7 @@ public class MySeriesHttpApiHostModule : AbpModule
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     In = ParameterLocation.Header,
-                    Description = "Please insert JWT with Beare into field",
+                    Description = "Please insert JWT with Bearer into field",
                     Name = "Authorization",
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer"
@@ -204,6 +205,7 @@ public class MySeriesHttpApiHostModule : AbpModule
                         Array.Empty<string>()
                     }
                 });
+
             });
     }
 

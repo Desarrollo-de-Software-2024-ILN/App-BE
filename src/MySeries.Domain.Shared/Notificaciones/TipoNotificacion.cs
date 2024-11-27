@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MySeries.Series
+namespace MySeries.Notificaciones
 {
-    public class CreateUpdateSerieDto
-    { 
-        public string Title { get; set; }
+    public enum TipoNotificacion
+    {
+        Email,
+        Pantalla
     }
 }

@@ -8,6 +8,6 @@ namespace MySeries.Series
 {
     public interface ISeriesApiService
     {
-        Task<SerieDto[]> GetSeriesAsync(string title, string gender);
+        Task<ICollection<SerieDto>> GetSeriesAsync(string title, string gender);
     }
 }
