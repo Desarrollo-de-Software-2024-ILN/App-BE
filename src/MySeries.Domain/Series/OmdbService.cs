@@ -10,7 +10,7 @@ namespace MySeries.Series
 {
     public class OmdbService : ISeriesApiService, ITransientDependency
     {
-        private static readonly string apiKey = "844b1b8b"; // Reemplaza con tu clave API de OMDb.
+        private static readonly string apiKey = "fa5ffac0"; // Reemplaza con tu clave API de OMDb.
         private static readonly string baseUrl = "http://www.omdbapi.com/";
 
         public async Task<ICollection<SerieDto>> GetSeriesAsync(string title, string gender)

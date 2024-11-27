@@ -10,9 +10,12 @@ namespace MySeries.Series
     public class SerieDto : EntityDto<int>
     {
         public string Title { get; set; }
+        public string Descripcion { get; set; }
+        public string Gender { get; set; }
 
         // Manejo de Calificaciones
         public ICollection<CalificacionDto> Calificaciones { get; set; }
 
+        
     }
 }
