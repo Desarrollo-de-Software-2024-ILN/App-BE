@@ -18,8 +18,16 @@ namespace MySeries.Series
         public int TotalTemporadas { get; set; }
         public ICollection<Temporada> Temporadas { get; set; }
 
+       // Usuario
         public Guid Creator { get; set; }
 
         public Guid CreatorId { get; set; }
+
+        // Calificaciones
+        public ICollection<Calificacion> calificaciones { get; set; }
+        public Serie() 
+        {
+            calificaciones = new List<Calificacion>();
+        }
     }
 }

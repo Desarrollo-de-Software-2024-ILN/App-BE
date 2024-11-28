@@ -17,5 +17,11 @@ namespace MySeries.Series
 
         public ICollection<TemporadaDto> Temporadas { get; set; }
 
+      
+
+        // Manejo de Calificaciones
+        public ICollection<CalificacionDto> Calificaciones { get; set; }
+
+        
     }
 }

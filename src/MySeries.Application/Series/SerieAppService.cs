@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
+using Volo.Abp.Domain.Entities;
 using Volo.Abp.Domain.Repositories;
 
 namespace MySeries.Series
@@ -16,6 +18,8 @@ namespace MySeries.Series
             : base(repository)
         {
             _seriesApiService = seriesApiService;
+            _repository = repository;
+            _currentUserService = currentUserService;
         }
 
         public async Task<SerieDto[]> BuscarSerieAsync(string title, string gender = null)

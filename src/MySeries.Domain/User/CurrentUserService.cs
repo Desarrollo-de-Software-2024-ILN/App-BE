@@ -7,10 +7,9 @@ using Volo.Abp.Users;
 
 namespace MySeries.User
 {
-    public class CurrentUserService
+    public class CurrentUserService : ICurrentUserService
     {
         private readonly ICurrentUser _currentUser;
-
         public CurrentUserService(ICurrentUser currentUser)
         {
             _currentUser = currentUser;
