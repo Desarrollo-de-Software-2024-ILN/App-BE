@@ -30,8 +30,8 @@ public class MySeriesApplicationModule : AbpModule
             options.AddMaps<MySeriesApplicationModule>();
         });
 
-        context.Services.AddTransient<SerieUpdateService>();
+        context.Services.AddTransient<SerieModificationChecker>();
 
-        context.Services.AddHostedService<SerieUpdateChecker>();
+        context.Services.AddHostedService<SerieModificationChecker>();
     }
 }
