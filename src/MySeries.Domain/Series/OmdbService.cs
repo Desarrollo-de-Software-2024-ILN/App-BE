@@ -16,8 +16,8 @@ namespace SerializedStalker.Series
     {
         private const string apiKey = "844b1b8b"; // Reemplaza con tu clave de OMDB
         private const string baseUrl = "http://www.omdbapi.com/";
-        private static readonly string apiKey = "fa5ffac0"; // Reemplaza con tu clave API de OMDb.
-        private static readonly string baseUrl = "http://www.omdbapi.com/";
+       // private static readonly string apiKey = "fa5ffac0"; // Reemplaza con tu clave API de OMDb.
+       // private static readonly string baseUrl = "http://www.omdbapi.com/";
 
         // Método principal de búsqueda que controla la lógica de validación
         public async Task<SerieDto[]> BuscarSerieAsync(string title, string genre = null)

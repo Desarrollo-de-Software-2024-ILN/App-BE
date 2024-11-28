@@ -27,7 +27,7 @@ namespace SerializedStalker.Tests.Series
 
             _serieUpdateService = new SerieUpdateService(
                  _serieRepositoryMock.Object,
-                _seriesApiServiceMock.Object
+                _seriesApiServiceMock.Object,
                 _notificacionServiceMock.Object);
         }
 

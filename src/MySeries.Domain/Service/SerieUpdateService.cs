@@ -129,7 +129,6 @@ namespace MySeries.Service
                                     await _notificationService.CrearNotificacionesAsync(
                                         usuarioId, tituloNotificacion, mensajeNotificacion, TipoNotificacion.Pantalla);
                                 }
-                                }
                             }
                         }                           
                     }

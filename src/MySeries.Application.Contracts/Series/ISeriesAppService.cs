@@ -13,7 +13,6 @@ namespace MySeries.Series
         Task<SerieDto[]> BuscarSerieAsync(string title, string gender = null);
 
         Task<TemporadaDto> BuscarTemporadaAsync(string id, int numeTemporada);
-        Task<ICollection<SerieDto>> SearchAsync(string? title, string? gender);
 
         Task CalificarSerieAsync(CalificacionDto input);
     }
