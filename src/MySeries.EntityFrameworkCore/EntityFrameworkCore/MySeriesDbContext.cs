@@ -25,6 +25,7 @@ using System;
 using Volo.Abp.Auditing;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using MySeries.User;
+using MySeries.Domain.Notificaciones;
 
 namespace MySeries.EntityFrameworkCore;
 
@@ -37,8 +38,20 @@ public class MySeriesDbContext :
     IIdentityDbContext
 {
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
-    public DbSet<Serie> Series { get; set; } 
+    //Serie
+    public DbSet<Serie> Series { get; set; }
+
+    //Temporada
+    public DbSet<Temporada> Temporadas { get; set; }
+
+    //Episodio
+    public DbSet<Episodio> Episodios { get; set; }
+
+    //Lista de seguimiento
     public DbSet<Watchlist> Watchlists { get; set; }
+
+    //Notificación
+    public DbSet<Notificacion> Notificaciones { get; set; }
 
     private readonly CurrentUserService _currentUserService;
 
@@ -109,8 +122,88 @@ public class MySeriesDbContext :
         builder.ConfigureOpenIddict();
         builder.ConfigureTenantManagement();
         builder.ConfigureBlobStoring();
-        
+
         /* Configure your own tables/entities inside here */
+
+        builder.Entity<Serie>(b =>
+        {
+            b.ToTable(MySeriesConsts.DbTablePrefix + "Series",
+                MySeriesConsts.DbSchema);
+            b.ConfigureByConvention(); //auto configure for the base class props
+            b.Property(x => x.Title).IsRequired().HasMaxLength(128);
+            b.Property(x => x.Gender).IsRequired().HasMaxLength(128);
+            b.Property(x => x.Tipo).IsRequired().HasMaxLength(128);
+            b.Property(x => x.TotalTemporadas).IsRequired(); // No aplica HasMaxLength porque es un int
+            // Relación con Temporadas
+            b.HasMany(s => s.Temporadas)
+             .WithOne(t => t.Serie)
+             .HasForeignKey(t => t.SerieID)
+             .OnDelete(DeleteBehavior.Cascade)
+             .IsRequired();
+        });
+        //Temporada
+        builder.Entity<Temporada>(b =>
+        {
+            b.ToTable(MySeriesConsts.DbTablePrefix + "Temporadas",
+                MySeriesConsts.DbSchema);
+            b.ConfigureByConvention(); //auto configure for the base class props
+            b.Property(x => x.Titulo).IsRequired().HasMaxLength(128);
+            b.Property(x => x.FechaLanzamiento).IsRequired().HasMaxLength(128);
+            b.Property(x => x.NumTemporada).IsRequired();
+
+            // Relación con Serie
+            b.HasOne(t => t.Serie)
+             .WithMany(s => s.Temporadas)
+             .HasForeignKey(t => t.SerieID)
+             .OnDelete(DeleteBehavior.Cascade)
+             .IsRequired();
+            // Relación con Episodios
+            b.HasMany(t => t.Episodios)
+             .WithOne(e => e.Temporada)
+             .HasForeignKey(e => e.TemporadaID)
+             .OnDelete(DeleteBehavior.Cascade)
+             .IsRequired();
+        });
+        //Episodio
+        builder.Entity<Episodio>(b =>
+        {
+            b.ToTable(MySeriesConsts.DbTablePrefix + "Episodios",
+                MySeriesConsts.DbSchema);
+            b.ConfigureByConvention(); //auto configure for the base class props
+            b.Property(x => x.Titulo).IsRequired().HasMaxLength(128);
+            b.Property(x => x.FechaEstreno).IsRequired();
+            b.Property(x => x.NumEpisodio).IsRequired();
+            b.HasOne(e => e.Temporada)
+             .WithMany(t => t.Episodios)
+             .HasForeignKey(e => e.TemporadaID)
+             .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        //Lista de seguimiento
+        builder.Entity<Watchlist>(b =>
+        {
+            b.ToTable(MySeriesConsts.DbTablePrefix + "ListasDeSeguimiento",
+                MySeriesConsts.DbSchema);
+            b.ConfigureByConvention(); //auto configure for the base class props
+            b.Property(x => x.FechaModificacion).IsRequired();
+
+        });
+
+        //Notificación
+        builder.Entity<Notificacion>(b =>
+        {
+            b.ToTable(MySeriesConsts.DbTablePrefix + "Notificacion",
+                MySeriesConsts.DbSchema);
+            b.ConfigureByConvention(); //auto configure for the base class props
+            b.Property(x => x.UsuarioId).IsRequired();
+            b.Property(x => x.Titulo).IsRequired();
+            b.Property(x => x.Msj).IsRequired();
+            b.Property(x => x.Leida).IsRequired();
+            b.Property(x => x.Tipo).IsRequired();
+            b.Property(x => x.FechaCreacion).IsRequired();
+
+        });
+
 
         //builder.Entity<YourEntity>(b =>
         //{

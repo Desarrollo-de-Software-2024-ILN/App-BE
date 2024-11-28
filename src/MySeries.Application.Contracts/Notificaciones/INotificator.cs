@@ -1,5 +1,4 @@
 ﻿using MySeries.Notificaciones;
-using System;
 using System.Threading.Tasks;
 
 namespace MySeries.Application.Contracts.Notificaciones
