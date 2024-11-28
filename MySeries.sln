@@ -27,6 +27,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySeries.HttpApi.Client", "src\MySeries.HttpApi.Client\MySeries.HttpApi.Client.csproj", "{3B5A0094-670D-4BB1-BFDD-61B88A8773DC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySeries.EntityFrameworkCore.Tests", "test\MySeries.EntityFrameworkCore.Tests\MySeries.EntityFrameworkCore.Tests.csproj", "{1FE30EB9-74A9-47F5-A9F6-7B1FAB672D81}"
+	ProjectSection(ProjectDependencies) = postProject
+		{554AD327-6DBA-4F8F-96F8-81CE7A0C863F} = {554AD327-6DBA-4F8F-96F8-81CE7A0C863F}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySeries.TestBase", "test\MySeries.TestBase\MySeries.TestBase.csproj", "{91853F21-9CD9-4132-BC29-A7D5D84FFFE7}"
 EndProject

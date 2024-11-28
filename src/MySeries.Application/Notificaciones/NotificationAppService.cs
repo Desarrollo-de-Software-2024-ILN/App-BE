@@ -13,12 +13,13 @@ namespace MySeries.Notificaciones
         private readonly INotificationRepository _notificationRepository;
         private readonly IEnumerable<INotificator> _notificators;
 
-        public NotificationAppService(INotificationRepository notificationRepository, IEnumerable<INotificator> notificators)
+        public NotificationAppService(
+            INotificationRepository notificationRepository, 
+            IEnumerable<INotificator> notificators)
         {
             _notificationRepository = notificationRepository;
             _notificators = notificators;
         }
-
 
         public async Task CrearNotificacionesAsync(int UsuarioId, string titulo, string msj, TipoNotificacion tipo)
         {
@@ -50,7 +51,6 @@ namespace MySeries.Notificaciones
             {
                 await notificator.EnvioNotificacionesAsync(notificacionesDto);
             }
-
         }
     }
 }

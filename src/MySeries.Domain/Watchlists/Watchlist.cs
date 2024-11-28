@@ -13,9 +13,6 @@ namespace MySeries.Watchlists
     {
         public List<Serie> Series { get; set; }
 
-        public Watchlist()
-        {
-            Series = new List<Serie>();
-        }
+        public DateOnly FechaModificacion { get; set; }
     }
 }

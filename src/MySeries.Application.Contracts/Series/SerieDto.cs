@@ -9,7 +9,13 @@ namespace MySeries.Series
 {
     public class SerieDto : EntityDto<int>
     {
-        public string Title { get; set; }
+        public string Title { get; set; } 
+        public string Generos { get; set; }
+        public string id { get; set; }
+        public string Tipo { get; set; }
+        public int TotalTemporadas { get; set; }
+
+        public ICollection<TemporadaDto> Temporadas { get; set; }
 
     }
 }

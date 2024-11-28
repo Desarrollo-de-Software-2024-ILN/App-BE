@@ -12,6 +12,12 @@ namespace MySeries.Series
     {
         public string Title { get; set; }
 
+        public string Gender { get; set; }
+        public string id { get; set; }
+        public string Tipo { get; set; }
+        public int TotalTemporadas { get; set; }
+        public ICollection<Temporada> Temporadas { get; set; }
+
         public Guid Creator { get; set; }
 
         public Guid CreatorId { get; set; }
