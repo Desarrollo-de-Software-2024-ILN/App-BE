@@ -14,7 +14,7 @@ namespace MySeries.Migrations
 {
     [DbContext(typeof(MySeriesDbContext))]
     [Migration("20240930200050_add-serie-entity")]
-    partial class addserieentity
+    partial class Addserieentity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

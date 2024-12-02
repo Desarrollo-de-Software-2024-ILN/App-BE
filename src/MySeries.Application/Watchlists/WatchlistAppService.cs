@@ -1,13 +1,12 @@
-﻿
-using MySeries.Series;
+﻿using MySeries.Series;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
-using Volo.Abp.Users;
 
 namespace MySeries.Watchlists
 {
@@ -15,33 +14,26 @@ namespace MySeries.Watchlists
     {
         private readonly IRepository<Watchlist, int> _watchlistRepository;
         private readonly IRepository<Serie, int> _serieRepository;
-        private readonly ICurrentUser _currentUser;
 
-        public WatchlistAppService(IRepository<Watchlist, int> watchlistRepository, IRepository<Serie, int> serieRepository, ICurrentUser currentUser)
+        public WatchlistAppService(IRepository<Watchlist, int> watchlistRepository, IRepository<Serie, int> serieRepository)
         {
             _serieRepository = serieRepository;
             _watchlistRepository = watchlistRepository;
-            _currentUser = currentUser;
         }
 
-        public async Task AddSerieAsync(int serieId)
+        public async Task AddSerieAsync(int SerieID)
         {
-            Guid? userId = _currentUser.Id;
-            
-            var watchlist = ((List<Watchlist>)await _watchlistRepository.GetListAsync()).FirstOrDefault();
-            
+            var listaDeSeguimiento = ((List<Watchlist>)await _watchlistRepository.GetListAsync()).FirstOrDefault();
 
-            if (watchlist == null)
+            if (listaDeSeguimiento == null)
             {
-                watchlist = new Watchlist();
-                await _watchlistRepository.InsertAsync(watchlist);
+                listaDeSeguimiento = new Watchlist();
+                await _watchlistRepository.InsertAsync(listaDeSeguimiento);
+            }
 
-            };
-
-            var serie = await _serieRepository.GetAsync(serieId);
-            watchlist.Series.Add(serie);
-
-            await _watchlistRepository.UpdateAsync(watchlist);
+            var Serie = await _serieRepository.GetAsync(SerieID);
+            listaDeSeguimiento.Series.Add(Serie);
+            await _watchlistRepository.UpdateAsync(listaDeSeguimiento);
 
         }
     }

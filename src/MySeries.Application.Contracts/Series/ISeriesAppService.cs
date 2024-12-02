@@ -8,9 +8,15 @@ using Volo.Abp.Application.Dtos;
 
 namespace MySeries.Series
 {
-    public interface ISeriesAppService : ICrudAppService<SerieDto, int, PagedAndSortedResultRequestDto, CreateUpdateSerieDto>
+    public interface ISeriesAppService : ICrudAppService<SerieDto, int, PagedAndSortedResultRequestDto, CreateUpdateSerieDto, CreateUpdateSerieDto>
     {
-        Task<ICollection<SerieDto>> SearchAsync(string title, string gender);
+        Task<SerieDto[]> BuscarSerieAsync(string title, string? gender = null);
+
+        Task<TemporadaDto> BuscarTemporadaAsync(string id, int numeTemporada);
+
+        Task CalificarSerieAsync(CalificacionDto input);
+
+        Task PersistirSeriesAsync(SerieDto[] seriesDto);
     }
 
 }
