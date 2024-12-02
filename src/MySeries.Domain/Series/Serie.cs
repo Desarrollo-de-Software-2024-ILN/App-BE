@@ -13,7 +13,7 @@ namespace MySeries.Series
         public string Title { get; set; }
 
         public string Gender { get; set; }
-        public string Id { get; set; }
+        //public string Id { get; set; }
         public string Tipo { get; set; }
         public int TotalTemporadas { get; set; }
         public ICollection<Temporada> Temporadas { get; set; }

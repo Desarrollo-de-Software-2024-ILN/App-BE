@@ -53,7 +53,7 @@ public class MySeriesDbContext :
     //Notificación
     public DbSet<Notificacion> Notificaciones { get; set; }
 
-    private readonly CurrentUserService _currentUserService;
+    private readonly ICurrentUserService _currentUserService;
 
     #region Entities from the modules
 
@@ -84,10 +84,10 @@ public class MySeriesDbContext :
 
     #endregion
 
-    public MySeriesDbContext(DbContextOptions<MySeriesDbContext> options)
+    public MySeriesDbContext(DbContextOptions<MySeriesDbContext> options,  ICurrentUserService currentUserService)
         : base(options)
     {
-        _currentUserService = this.GetService<CurrentUserService>();
+        _currentUserService = currentUserService;
     }
 
     protected override void OnModelCreating(ModelBuilder builder)

@@ -25,7 +25,7 @@ namespace MySeries.Series
         }
 
         //metodo para temporadas
-        public async Task<TemporadaDto> BuscarTemporadaAsync(string id, int NumTemporada)
+        public async Task<TemporadaDto> BuscarTemporadaAsync(int id, int NumTemporada)
         {
             return await _seriesApiService.BuscarTemporadaAsync(id, NumTemporada);
         }

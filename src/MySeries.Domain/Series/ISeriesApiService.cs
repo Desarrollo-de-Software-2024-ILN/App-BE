@@ -10,6 +10,6 @@ namespace MySeries.Series
     {
         Task<SerieDto[]> BuscarSerieAsync(string title, string gender);
 
-        Task<TemporadaDto> BuscarTemporadaAsync(string id, int numTemporada);
+        Task<TemporadaDto> BuscarTemporadaAsync(int id, int numTemporada);
     }
 }

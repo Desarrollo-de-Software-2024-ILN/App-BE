@@ -66,8 +66,8 @@ public class MySeriesEntityFrameworkCoreTestModule : AbpModule
         var options = new DbContextOptionsBuilder<MySeriesDbContext>()
             .UseSqlite(connection)
             .Options;
-
-        using (var context = new MySeriesDbContext(options))
+        //TODO: aca hay que introducir una implementacion fake de ICurrentUserService en vez del null
+        using (var context = new MySeriesDbContext(options, null))
         {
             context.GetService<IRelationalDatabaseCreator>().CreateTables();
         }

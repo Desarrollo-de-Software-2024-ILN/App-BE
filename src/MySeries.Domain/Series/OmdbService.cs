@@ -100,12 +100,12 @@ namespace MySeries.Series
             }
         }
 
-        public async Task<TemporadaDto> BuscarTemporadaAsync(string id, int numTemporada)
+        public async Task<TemporadaDto> BuscarTemporadaAsync(int id, int numTemporada)
         {
-            if (string.IsNullOrWhiteSpace(id))
-            {
-                throw new ArgumentException("El identificador IMDb es obligatorio para buscar una temporada.", nameof(id));
-            }
+            //if (string.IsNullOrWhiteSpace(id))
+            //{
+            //    throw new ArgumentException("El identificador IMDb es obligatorio para buscar una temporada.", nameof(id));
+            //}
 
             var url = $"{baseUrl}?apikey={apiKey}&i={id}&season={numTemporada}";
 

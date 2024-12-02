@@ -19,7 +19,7 @@ public class MySeriesDbContextFactory : IDesignTimeDbContextFactory<MySeriesDbCo
         var builder = new DbContextOptionsBuilder<MySeriesDbContext>()
             .UseSqlServer(configuration.GetConnectionString("Default"));
         
-        return new MySeriesDbContext(builder.Options);
+        return new MySeriesDbContext(builder.Options, null);
     }
 
     private static IConfigurationRoot BuildConfiguration()

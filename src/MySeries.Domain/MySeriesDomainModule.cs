@@ -66,7 +66,7 @@ public class MySeriesDomainModule : AbpModule
             options.Languages.Add(new LanguageInfo("es", "es", "Español"));
         });
 
-        context.Services.AddTransient<CurrentUserService>(); // Registrar el servicio
+        context.Services.AddTransient<ICurrentUserService, CurrentUserService>(); // Registrar el servicio
 
 
 #if DEBUG
