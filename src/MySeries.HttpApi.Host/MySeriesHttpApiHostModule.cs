@@ -190,7 +190,6 @@ public class MySeriesHttpApiHostModule : AbpModule
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer"
                 });
-
                 options.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {

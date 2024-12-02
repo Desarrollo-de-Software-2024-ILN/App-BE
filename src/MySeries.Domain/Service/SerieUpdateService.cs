@@ -7,22 +7,13 @@ using MySeries.Notificaciones;
 
 namespace MySeries.Service
 {
-    public class SerieUpdateService : DomainService, ISerieUpdateService
+    public class SerieUpdateService(IRepository<Serie, int> repository,
+         ISeriesApiService seriesApiService,
+         INotificationService notificationService) : DomainService, ISerieUpdateService
     {
-        private readonly IRepository<Serie, int> _repository;
-        private readonly ISeriesApiService _seriesApiService;
-        private readonly INotificationService _notificationService;
-      
-
-        public SerieUpdateService 
-            (IRepository<Serie, int> repository, 
-            ISeriesApiService seriesApiService, 
-            INotificationService notificationService)
-        {
-            _repository = repository;
-            _seriesApiService = seriesApiService;
-            _notificationService = notificationService;
-        }
+        private readonly IRepository<Serie, int> _repository = repository;
+        private readonly ISeriesApiService _seriesApiService = seriesApiService;
+        private readonly INotificationService _notificationService = notificationService;
 
         public async Task VerificarYActualizarSeriesAsync()
         {
@@ -40,7 +31,7 @@ namespace MySeries.Service
                     if (apiSerie.TotalTemporadas > serie.TotalTemporadas)
                     {
                         var nuevaTemporadaNum = serie.TotalTemporadas + 1;
-                        var nuevaTemporadaApi = await _seriesApiService.BuscarTemporadaAsync(apiSerie.id, nuevaTemporadaNum);
+                        var nuevaTemporadaApi = await _seriesApiService.BuscarTemporadaAsync(apiSerie.Id, nuevaTemporadaNum);
 
                         if (nuevaTemporadaApi != null)
                         {
@@ -78,7 +69,7 @@ namespace MySeries.Service
                     if (ultimaTemporada != null)
                     {
                         // Obtener la última temporada desde la API
-                        var apiUltimaTemporada = await _seriesApiService.BuscarTemporadaAsync(apiSerie.id, ultimaTemporada.NumTemporada);
+                        var apiUltimaTemporada = await _seriesApiService.BuscarTemporadaAsync(apiSerie.Id, ultimaTemporada.NumTemporada);
 
                         if (apiUltimaTemporada != null)
                         {
@@ -91,7 +82,7 @@ namespace MySeries.Service
                                     .Where(e => !episodiosLocales.Contains(e.NumEpisodio))
                                     .ToList();
 
-                                if (episodiosNuevos.Any())
+                                if (episodiosNuevos.Count != 0)
                                 {
                                     // Lógica para manejar los episodios nuevos
                                     foreach (var episodioNuevo in episodiosNuevos)

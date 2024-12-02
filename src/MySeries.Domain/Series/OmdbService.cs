@@ -6,11 +6,8 @@ using MySeries.Series;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Volo.Abp.DependencyInjection;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Volo.Abp.DependencyInjection;
 
-namespace SerializedStalker.Series
+namespace MySeries.Series
 {
     public class OmdbService : ISeriesApiService, ITransientDependency
     {
@@ -65,18 +62,11 @@ namespace SerializedStalker.Series
 
         private async Task<SerieDto[]> ObtenerSeriesDesdeOmdbAsync(string url)
         {
-            // Inicializar el monitoreo del tiempo
-            var monitoreo = new MonitoreoApi
-            {
-                HoraEntrada = DateTime.Now // Registrar la hora de entrada
-            };
 
             using (var httpClient = new HttpClient())
             {
                 var response = await httpClient.GetAsync(url);
                 response.EnsureSuccessStatusCode();
-
-                monitoreo.HoraSalida = DateTime.Now; // Registrar la hora de salida
 
                 // Aquí podemos agregar el código para almacenar o procesar el monitoreo, si es necesario.
 
@@ -163,18 +153,10 @@ namespace SerializedStalker.Series
         {
             var url = $"{baseUrl}?apikey={apiKey}&i={id}";
 
-            // Inicializar el monitoreo del tiempo
-            var monitoreo = new MonitoreoApi
-            {
-                HoraEntrada = DateTime.Now // Registrar la hora de entrada
-            };
-
             using (var httpClient = new HttpClient())
             {
                 var response = await httpClient.GetAsync(url);
                 response.EnsureSuccessStatusCode();
-
-                monitoreo.HoraSalida = DateTime.Now; // Registrar la hora de salida
 
                 // Aquí podemos agregar el código para almacenar o procesar el monitoreo, si es necesario.
 

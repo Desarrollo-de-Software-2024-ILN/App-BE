@@ -13,7 +13,7 @@ namespace MySeries.Series
         public string Title { get; set; }
 
         public string Gender { get; set; }
-        public string id { get; set; }
+        public string Id { get; set; }
         public string Tipo { get; set; }
         public int TotalTemporadas { get; set; }
         public ICollection<Temporada> Temporadas { get; set; }
@@ -24,10 +24,10 @@ namespace MySeries.Series
         public Guid CreatorId { get; set; }
 
         // Calificaciones
-        public ICollection<Calificacion> calificaciones { get; set; }
-        public Serie() 
+        public ICollection<Calificacion> Calificaciones { get; set; }
+        public Serie()
         {
-            calificaciones = new List<Calificacion>();
+            Calificaciones = new List<Calificacion>();
         }
     }
 }

@@ -10,11 +10,13 @@ namespace MySeries.Series
 {
     public interface ISeriesAppService : ICrudAppService<SerieDto, int, PagedAndSortedResultRequestDto, CreateUpdateSerieDto, CreateUpdateSerieDto>
     {
-        Task<SerieDto[]> BuscarSerieAsync(string title, string gender = null);
+        Task<SerieDto[]> BuscarSerieAsync(string title, string? gender = null);
 
         Task<TemporadaDto> BuscarTemporadaAsync(string id, int numeTemporada);
 
         Task CalificarSerieAsync(CalificacionDto input);
+
+        Task PersistirSeriesAsync(SerieDto[] seriesDto);
     }
 
 }

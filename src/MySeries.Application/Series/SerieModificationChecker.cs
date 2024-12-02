@@ -7,20 +7,14 @@ using System.Threading.Tasks;
 
 namespace MySeries.Series
 {
-    public class SerieModificationChecker : IHostedService, IDisposable
+    public class SerieModificationChecker(
+        ILogger<SerieModificationChecker> logger,
+        ISerieUpdateService serieUpdateService) : IHostedService, IDisposable
     {
-        private readonly ILogger<SerieModificationChecker> _logger;
-        private readonly ISerieUpdateService _serieUpdateService;
+        private readonly ILogger<SerieModificationChecker> _logger = logger;
+        private readonly ISerieUpdateService _serieUpdateService = serieUpdateService;
         private Timer _timer;
         private bool _isRunning;
-
-        public SerieModificationChecker(
-            ILogger<SerieModificationChecker> logger,
-            ISerieUpdateService serieUpdateService)
-        {
-            _logger = logger;
-            _serieUpdateService = serieUpdateService;
-        }
 
         public Task StartAsync(CancellationToken cancellationToken)
         {

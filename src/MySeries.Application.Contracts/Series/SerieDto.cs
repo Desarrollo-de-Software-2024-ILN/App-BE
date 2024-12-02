@@ -11,7 +11,7 @@ namespace MySeries.Series
     {
         public string Title { get; set; } 
         public string Generos { get; set; }
-        public string id { get; set; }
+        public string Id { get; set; }
         public string Tipo { get; set; }
         public int TotalTemporadas { get; set; }
 

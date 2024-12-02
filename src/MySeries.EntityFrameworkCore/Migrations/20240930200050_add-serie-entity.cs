@@ -5,7 +5,7 @@
 namespace MySeries.Migrations
 {
     /// <inheritdoc />
-    public partial class addserieentity : Migration
+    public partial class Addserieentity : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

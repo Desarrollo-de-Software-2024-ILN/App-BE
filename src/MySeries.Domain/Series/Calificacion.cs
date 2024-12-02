@@ -11,8 +11,8 @@ namespace MySeries.Series
 {
     public class Calificacion : Entity<int>
     {
-        public float calificacion { get; set; }
-        public string comentario { get; set; }
+        public float CalificacionNota { get; set; }
+        public string? Comentario { get; set; }
         public DateTime FechaCalificacion { get; set; }
 
         //Foreign key
