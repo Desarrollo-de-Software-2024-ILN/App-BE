@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.3.32611.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySeries.Domain", "src\MySeries.Domain\MySeries.Domain.csproj", "{554AD327-6DBA-4F8F-96F8-81CE7A0C863F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{520659C8-C734-4298-A3DA-B539DB9DFC0B} = {520659C8-C734-4298-A3DA-B539DB9DFC0B}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySeries.Application", "src\MySeries.Application\MySeries.Application.csproj", "{1A94A50E-06DC-43C1-80B5-B662820EC3EB}"
 EndProject
@@ -20,10 +23,16 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySeries.Application.Contracts", "src\MySeries.Application.Contracts\MySeries.Application.Contracts.csproj", "{520659C8-C734-4298-A3DA-B539DB9DFC0B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySeries.HttpApi", "src\MySeries.HttpApi\MySeries.HttpApi.csproj", "{4164BDF7-F527-4E85-9CE6-E3C2D7426A27}"
+	ProjectSection(ProjectDependencies) = postProject
+		{554AD327-6DBA-4F8F-96F8-81CE7A0C863F} = {554AD327-6DBA-4F8F-96F8-81CE7A0C863F}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySeries.HttpApi.Client", "src\MySeries.HttpApi.Client\MySeries.HttpApi.Client.csproj", "{3B5A0094-670D-4BB1-BFDD-61B88A8773DC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySeries.EntityFrameworkCore.Tests", "test\MySeries.EntityFrameworkCore.Tests\MySeries.EntityFrameworkCore.Tests.csproj", "{1FE30EB9-74A9-47F5-A9F6-7B1FAB672D81}"
+	ProjectSection(ProjectDependencies) = postProject
+		{554AD327-6DBA-4F8F-96F8-81CE7A0C863F} = {554AD327-6DBA-4F8F-96F8-81CE7A0C863F}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySeries.TestBase", "test\MySeries.TestBase\MySeries.TestBase.csproj", "{91853F21-9CD9-4132-BC29-A7D5D84FFFE7}"
 EndProject
@@ -34,6 +43,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySeries.DbMigrator", "src\MySeries.DbMigrator\MySeries.DbMigrator.csproj", "{70680696-BB1E-4383-BCB2-42C3767171FB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySeries.HttpApi.Host", "src\MySeries.HttpApi.Host\MySeries.HttpApi.Host.csproj", "{96E5259E-59A3-4FAF-BCD1-5BF8E74EF82C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{520659C8-C734-4298-A3DA-B539DB9DFC0B} = {520659C8-C734-4298-A3DA-B539DB9DFC0B}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

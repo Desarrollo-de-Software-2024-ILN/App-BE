@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MySeries.Application.Contracts\MySeries.Application.Contracts.csproj" />
     <ProjectReference Include="..\MySeries.Domain.Shared\MySeries.Domain.Shared.csproj" />
   </ItemGroup>
 
