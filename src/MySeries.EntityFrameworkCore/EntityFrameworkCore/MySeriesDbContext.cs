@@ -25,7 +25,7 @@ using System;
 using Volo.Abp.Auditing;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using MySeries.User;
-using MySeries.Domain.Notificaciones;
+using MySeries.Notificaciones;
 
 namespace MySeries.EntityFrameworkCore;
 

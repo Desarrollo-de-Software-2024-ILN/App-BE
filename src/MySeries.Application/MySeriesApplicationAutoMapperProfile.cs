@@ -19,6 +19,6 @@ public class MySeriesApplicationAutoMapperProfile : Profile
         CreateMap<Temporada, TemporadaDto>();
 
         //Episodio
-        CreateMap<EpisodioDto, EpisodioDto>();
+        CreateMap<Episodio, EpisodioDto>();
     }
 }

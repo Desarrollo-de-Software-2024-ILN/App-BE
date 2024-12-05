@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MySeries.Application.Contracts.Notificaciones;
-using MySeries.Domain.Notificaciones;
+using MySeries.Notificaciones;
 using Volo.Abp.DependencyInjection;
 
 namespace MySeries.Notificaciones
 {
-    public class NotificationAppService: INotificationService, ITransientDependency
+    public class NotificationAppService : INotificationService, ITransientDependency
     {
         private readonly INotificationRepository _notificationRepository;
         private readonly IEnumerable<INotificator> _notificators;
 
         public NotificationAppService(
-            INotificationRepository notificationRepository, 
-            IEnumerable<INotificator> notificators)
+            INotificationRepository notificacionRepository,
+            IEnumerable<INotificator> notificadores)
         {
-            _notificationRepository = notificationRepository;
-            _notificators = notificators;
+            _notificationRepository = notificacionRepository;
+            _notificators = notificadores;
         }
 
         public async Task CrearNotificacionesAsync(int UsuarioId, string titulo, string msj, TipoNotificacion tipo)

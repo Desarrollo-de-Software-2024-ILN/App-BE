@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using MySeries.Application.Contracts.Notificaciones;
-using MySeries.Domain.Notificaciones;
 using MySeries.Notificaciones;
 
-namespace MySeries.Application.Notificaciones
+namespace MySeries.Notificaciones
 {
     public class NotificadorEmail : INotificator
     {
@@ -25,7 +24,6 @@ namespace MySeries.Application.Notificaciones
                 Tipo = notificacionDTO.Tipo,
             };
 
-            await Task.Delay(1000);
             Console.WriteLine($"Enviar Mail a {notificacion.UsuarioId}: {notificacion.Titulo} - {notificacion.Msj}");
         }
     }
