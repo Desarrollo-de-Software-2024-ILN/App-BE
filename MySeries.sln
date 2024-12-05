@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.3.32611.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySeries.Domain", "src\MySeries.Domain\MySeries.Domain.csproj", "{554AD327-6DBA-4F8F-96F8-81CE7A0C863F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{520659C8-C734-4298-A3DA-B539DB9DFC0B} = {520659C8-C734-4298-A3DA-B539DB9DFC0B}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySeries.Application", "src\MySeries.Application\MySeries.Application.csproj", "{1A94A50E-06DC-43C1-80B5-B662820EC3EB}"
 EndProject

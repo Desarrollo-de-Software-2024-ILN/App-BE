@@ -8,8 +8,6 @@ namespace MySeries.Series
 {
     public interface ISeriesApiService
     {
-        Task<SerieDto[]> BuscarSerieAsync(string title, string gender);
-
-        Task<TemporadaDto> BuscarTemporadaAsync(string id, int numTemporada);
+        Task<SerieDto[]> BuscarSerieAsync(string Title, string Genre);
     }
 }

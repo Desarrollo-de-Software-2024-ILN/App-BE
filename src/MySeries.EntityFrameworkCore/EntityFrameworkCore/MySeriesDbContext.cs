@@ -104,6 +104,8 @@ public class MySeriesDbContext :
                 MySeriesConsts.DbSchema);
             b.ConfigureByConvention(); //auto configure for the base class props
             b.Property(x => x.Title).IsRequired().HasMaxLength(128);
+            b.Property(x => x.Genre).IsRequired().HasMaxLength(128);
+            b.Property(x => x.Descripcion).IsRequired().HasMaxLength(512);
         });
 
         builder.Entity<Watchlist>(b => 
