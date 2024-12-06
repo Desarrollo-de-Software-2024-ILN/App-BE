@@ -1,1 +1,17 @@
-<p>series works!</p>
+<h2>buscar series </h2>
+
+<form (ngSubmit)="searchSeries()">
+    <input type="text" [(ngModel)]="serieTitle" name="title" placeholder="Ingrese el titulo de la Serie"/>
+    <button type="submit">Buscar</button>
+</form>
+
+<ngx-datatable
+    *ngIf="series.length"
+    class="boostrap"
+    [rows]="series"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="auto">
+    <ngx-datatable-column name="Titulo" prop="title"></ngx-datatable-column>
+</ngx-datatable>
+
