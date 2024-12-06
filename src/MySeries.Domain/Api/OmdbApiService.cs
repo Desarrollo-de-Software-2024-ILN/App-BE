@@ -13,7 +13,7 @@ namespace MySeries.Api
 {
     public class OmdbApiService : ISeriesApiService, ITransientDependency
     {
-        private const string Key = "844b1b8b";
+        private const string Key = "fa5ffac0";
         private const string Url = "http://www.omdbapi.com/";
         public async Task<SerieDto[]> BuscarSerieAsync(string Title, string Genre = null)
         {
