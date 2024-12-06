@@ -8,34 +8,43 @@ using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement.HttpApi;
 using Volo.Abp.Localization;
 using Volo.Abp.TenantManagement;
+using Microsoft.Extensions.DependencyInjection;
+using MySeries.Api;
 
-namespace MySeries;
-
- [DependsOn(
-    typeof(MySeriesApplicationContractsModule),
-    typeof(AbpPermissionManagementHttpApiModule),
-    typeof(AbpSettingManagementHttpApiModule),
-    typeof(AbpAccountHttpApiModule),
-    typeof(AbpIdentityHttpApiModule),
-    typeof(AbpTenantManagementHttpApiModule),
-    typeof(AbpFeatureManagementHttpApiModule)
-    )]
-public class MySeriesHttpApiModule : AbpModule
+namespace MySeries
 {
-    public override void ConfigureServices(ServiceConfigurationContext context)
+    [DependsOn(
+        typeof(MySeriesApplicationContractsModule),
+        typeof(AbpPermissionManagementHttpApiModule),
+        typeof(AbpSettingManagementHttpApiModule),
+        typeof(AbpAccountHttpApiModule),
+        typeof(AbpIdentityHttpApiModule),
+        typeof(AbpTenantManagementHttpApiModule),
+        typeof(AbpFeatureManagementHttpApiModule)
+    )]
+    public class MySeriesHttpApiModule : AbpModule
     {
-        ConfigureLocalization();
-    }
-
-    private void ConfigureLocalization()
-    {
-        Configure<AbpLocalizationOptions>(options =>
+        public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            options.Resources
-                .Get<MySeriesResource>()
-                .AddBaseTypes(
-                    typeof(AbpUiResource)
-                );
-        });
+            var services = context.Services;
+
+            
+            services.AddHttpClient<OmdbApiService>();
+
+            ConfigureLocalization();
+        }
+
+        private void ConfigureLocalization()
+        {
+            Configure<AbpLocalizationOptions>(options =>
+            {
+                options.Resources
+                    .Get<MySeriesResource>()
+                    .AddBaseTypes(
+                        typeof(AbpUiResource)
+                    );
+            });
+        }
     }
 }
+
