@@ -106,7 +106,8 @@ namespace MySeries.Api
                 {
                     Title = json["Title"]?.ToString(),
                     Descripcion = json["Plot"]?.ToString(),
-                    Genre = json["Genre"]?.ToString()
+                    Genre = json["Genre"]?.ToString(),
+                    idSerie = json["idSerie"]?.ToString()
                 };
             }
         }

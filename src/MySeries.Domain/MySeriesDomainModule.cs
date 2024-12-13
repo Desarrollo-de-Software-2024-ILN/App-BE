@@ -17,6 +17,8 @@ using Volo.Abp.Emailing;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
 using Volo.Abp.TenantManagement;
+using MySeries.Users;
+using Volo.Abp.Users;
 
 namespace MySeries;
 
@@ -65,6 +67,7 @@ public class MySeriesDomainModule : AbpModule
             options.Languages.Add(new LanguageInfo("es", "es", "Español"));
         });
         
+        context.Services.AddTransient<ICurrentUserService,CurrentUserService>();
 
 #if DEBUG
         context.Services.Replace(ServiceDescriptor.Singleton<IEmailSender, NullEmailSender>());

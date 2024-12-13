@@ -13,5 +13,7 @@ namespace MySeries.Series
         public string Genre { get; set; }
         public string Descripcion { get; set; }
 
+        public string idSerie { get; set; }
+
     }
 }
