@@ -67,7 +67,7 @@ public class MySeriesDomainModule : AbpModule
             options.Languages.Add(new LanguageInfo("es", "es", "Español"));
         });
         
-        context.Services.AddTransient<ICurrentUserService,CurrentUserService>();
+       context.Services.AddTransient<ICurrentUserService,CurrentUserService>();
 
 #if DEBUG
         context.Services.Replace(ServiceDescriptor.Singleton<IEmailSender, NullEmailSender>());
