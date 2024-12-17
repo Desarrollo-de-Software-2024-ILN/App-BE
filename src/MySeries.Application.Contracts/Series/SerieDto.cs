@@ -12,8 +12,9 @@ namespace MySeries.Series
         public string Title { get; set; }
         public string Genre { get; set; }
         public string Descripcion { get; set; }
+        public string IdSerie { get; set; }
 
-        public string idSerie { get; set; }
+        public ICollection<CalificationDto> Califications { get; set; }
 
     }
 }
