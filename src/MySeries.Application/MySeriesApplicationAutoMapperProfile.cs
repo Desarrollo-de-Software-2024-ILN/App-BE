@@ -11,6 +11,7 @@ public class MySeriesApplicationAutoMapperProfile : Profile
          * Alternatively, you can split your mapping configurations
          * into multiple profile classes for a better organization. */
         CreateMap<Serie, SerieDto>();
+        CreateMap<SerieDto, Serie>();
         CreateMap<CreateUpdateSerieDto, Serie>();
     }
 }

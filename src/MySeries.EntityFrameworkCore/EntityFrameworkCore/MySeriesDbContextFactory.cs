@@ -3,6 +3,7 @@ using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
+using MySeries.Users;
 
 namespace MySeries.EntityFrameworkCore;
 
@@ -19,7 +20,7 @@ public class MySeriesDbContextFactory : IDesignTimeDbContextFactory<MySeriesDbCo
         var builder = new DbContextOptionsBuilder<MySeriesDbContext>()
             .UseSqlServer(configuration.GetConnectionString("Default"));
         
-        return new MySeriesDbContext(builder.Options);
+        return new MySeriesDbContext(builder.Options, new FakeCurrentUserService());
     }
 
     private static IConfigurationRoot BuildConfiguration()

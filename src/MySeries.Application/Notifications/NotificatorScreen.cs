@@ -8,10 +8,7 @@ namespace MySeries.Notifications
 {
     public class NotificatorScreen : INotificator
     {
-        public Boolean PuedeEnviar(TipoNotificacion tipo)
-        {
-            return tipo == TipoNotificacion.Screen;
-        }
+        public Boolean PuedeEnviar(TipoNotificacion tipo) => tipo == TipoNotificacion.Screen;
 
         public Task EnvioNotificationsAsync(NotificationDto notificationDto)
         {

@@ -10,6 +10,7 @@ using Volo.Abp.FeatureManagement;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement;
 using Volo.Abp.Uow;
+using MySeries.Users;
 
 namespace MySeries.EntityFrameworkCore;
 
@@ -35,6 +36,15 @@ public class MySeriesEntityFrameworkCoreTestModule : AbpModule
             options.IsDynamicPermissionStoreEnabled = false;
         });
         context.Services.AddAlwaysDisableUnitOfWorkTransaction();
+        
+        
+        Configure<AbpUnitOfWorkOptions>(options =>
+        {
+            options.IsTransactional = false; // Deshabilitar transacciones para pruebas
+        });
+
+        
+        context.Services.AddAlwaysAllowAuthorization();
 
         ConfigureInMemorySqlite(context.Services);
 
@@ -67,7 +77,7 @@ public class MySeriesEntityFrameworkCoreTestModule : AbpModule
             .UseSqlite(connection)
             .Options;
 
-        using (var context = new MySeriesDbContext(options))
+        using (var context = new MySeriesDbContext(options, new FakeCurrentUserService()))
         {
             context.GetService<IRelationalDatabaseCreator>().CreateTables();
         }

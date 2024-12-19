@@ -8,6 +8,7 @@ namespace MySeries.Series
 {
     public class Calification
     {
+        public Guid Id { get; set; }
         public int Nota { get; set; }
         public string Comentario { get; set; }
         public DateTime FechaCreada { get; set; }

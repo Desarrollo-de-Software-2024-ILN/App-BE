@@ -15,6 +15,9 @@ using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using MySeries.Series;
+using MySeries.Watchlists;
+using MySeries.Notifications;
+using MySeries.Users;
 
 namespace MySeries.EntityFrameworkCore;
 
@@ -28,6 +31,14 @@ public class MySeriesDbContext :
 {
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
     public DbSet<Serie> Series { get; set; } 
+
+    public DbSet<Watchlist> Watchlists { get; set; }
+
+    public DbSet<Notification> Notification { get; set; }
+
+    public DbSet<Calification> Calification { get; set; }
+
+    private readonly ICurrentUserService _currentUserService;
 
     #region Entities from the modules
 
@@ -58,10 +69,10 @@ public class MySeriesDbContext :
 
     #endregion
 
-    public MySeriesDbContext(DbContextOptions<MySeriesDbContext> options)
+    public MySeriesDbContext(DbContextOptions<MySeriesDbContext> options, ICurrentUserService currentUserService)
         : base(options)
     {
-
+        _currentUserService = currentUserService;
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
@@ -69,15 +80,6 @@ public class MySeriesDbContext :
         base.OnModelCreating(builder);
 
         /* Include modules to your migration db context */
-        builder.Entity<Serie>(b =>
-        {
-            b.ToTable(MySeriesConsts.DbTablePrefix + "series",
-                MySeriesConsts.DbSchema);
-            b.ConfigureByConvention();
-            b.Property(x => x.Title).IsRequired().HasMaxLength(128);
-            b.Property(x => x.Genre).IsRequired().HasMaxLength(128);
-            b.Property(x => x.Descripcion).IsRequired().HasMaxLength(512);
-        });
 
         builder.ConfigurePermissionManagement();
         builder.ConfigureSettingManagement();
@@ -88,8 +90,68 @@ public class MySeriesDbContext :
         builder.ConfigureOpenIddict();
         builder.ConfigureTenantManagement();
         builder.ConfigureBlobStoring();
-        
+
         /* Configure your own tables/entities inside here */
+
+        //filtro global por usuario 
+        builder.Entity<Serie>().HasQueryFilter(serie => serie.CreatorId == _currentUserService.GetCurrentUserID());
+
+        // serie
+        builder.Entity<Serie>(b =>
+        {
+            b.ToTable(MySeriesConsts.DbTablePrefix + "Series",
+                MySeriesConsts.DbSchema);
+            b.ConfigureByConvention();
+            b.Property(x => x.Title).IsRequired().HasMaxLength(128);
+            b.Property(x => x.Genre).IsRequired().HasMaxLength(64);
+            b.Property(x => x.IdSerie).IsRequired().HasMaxLength(16);
+            b.Property(x => x.Descripcion).IsRequired().HasMaxLength(256);
+            b.HasMany(s => s.Califications)
+            .WithOne(c => c.Serie)
+            .HasForeignKey(c => c.IdSerie)
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired();
+        });
+
+        //watchlist
+        builder.Entity<Watchlist>(b =>
+        {
+            b.ToTable(MySeriesConsts.DbTablePrefix + "Watchlists",
+                MySeriesConsts.DbSchema);
+            b.ConfigureByConvention();
+            b.Property(x => x.FechaModificacion).IsRequired();
+        });
+
+        //notification
+        builder.Entity<Notification>(b =>
+        {
+            b.ToTable(MySeriesConsts.DbTablePrefix + "Notifications",
+                MySeriesConsts.DbSchema);
+            b.ConfigureByConvention();
+            b.Property(x => x.UsuarioID).IsRequired();
+            b.Property(x => x.Titulo).IsRequired();
+            b.Property(x => x.Msj).IsRequired();
+            b.Property(x => x.Leida).IsRequired();
+            b.Property(x => x.Tipo).IsRequired();
+        });
+
+        //calification
+        builder.Entity<Calification>(b =>
+        {
+            b.ToTable(MySeriesConsts.DbTablePrefix + "Calificacion",
+                MySeriesConsts.DbSchema);
+            b.ConfigureByConvention(); 
+            b.Property(x => x.Nota).IsRequired();
+            b.Property(x => x.Comentario);
+            b.Property(x => x.FechaCreada).IsRequired();
+            b.Property(x => x.IdSerie).IsRequired();
+            b.Property(x => x.User).IsRequired();
+            b.HasOne<Serie>(c => c.Serie)
+            .WithMany(s => s.Califications)
+            .HasForeignKey(c => c.IdSerie)
+            .IsRequired(false); 
+
+        });
 
         //builder.Entity<YourEntity>(b =>
         //{

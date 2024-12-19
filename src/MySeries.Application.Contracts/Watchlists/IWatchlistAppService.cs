@@ -9,6 +9,6 @@ namespace MySeries.Watchlists
 {
     public interface IWatchlistAppService : IApplicationService
     {
-        Task AgregarSerieAsync(int serieID);
+        Task AgregarSerieAsync(string title);
     }
 }

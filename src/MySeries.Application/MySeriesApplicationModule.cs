@@ -9,6 +9,7 @@ using Volo.Abp.TenantManagement;
 using Microsoft.Extensions.DependencyInjection;
 using MySeries.Series;
 using MySeries.Api;
+using MySeries.Updates;
 
 namespace MySeries;
 
@@ -31,6 +32,10 @@ public class MySeriesApplicationModule : AbpModule
             options.AddMaps<MySeriesApplicationModule>();
         });
 
+        context.Services.AddTransient<SerieUpdateService>();
+
+        context.Services.AddTransient<SerieUpdateChecker>();
+        
         context.Services.AddTransient<ISeriesApiService, OmdbApiService>();
     }
 }
